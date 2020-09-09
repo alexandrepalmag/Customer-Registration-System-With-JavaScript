@@ -12,9 +12,8 @@ nav#navperson {
     padding: 1rem;
 }
 .container-person {
-    border: solid;
     padding: 1.88rem;
-    margin-top: 5rem;
+    margin-top: 4rem;
 }
 /* ==============placeholder in date field=================== */
 input[type='date']:after {
