@@ -13,7 +13,7 @@ nav#navperson {
 }
 .container-person {
     padding: 1.88rem;
-    margin-top: 4rem;
+    margin-top: 2rem;
 }
 /* ==============placeholder in date field=================== */
 input[type='date']:after {
@@ -29,3 +29,10 @@ input[type='date']:after {
   input[type="date"]:valid:before {
     content: "";
   } */
+
+/*==============================table========================== */
+.divcontainer-table {
+    margin-top: 2rem;
+    border: solid rgba(201, 206, 211, 0.48) 0.048rem;
+    border-radius: 1rem;
+}
