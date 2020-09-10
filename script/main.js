@@ -32,7 +32,16 @@ function addLineTable(dataCostumer) {
         <td>${dataCostumer.email}</td>
         <td>${dataCostumer.phone}</td>
         <td>${dataCostumer.country}</td>
-        <td><button class="btn btn-info">Edit</button><button class="btn btn-danger">Delete</button></td>
+        <td>
+            <div style="display: inline;">
+                <button class="btn btn-info">
+                    <i class="fas fa-edit"></i>
+                </button>
+                <button class="btn btn-danger">
+                    <i class="fas fa-trash-alt"></i>
+                </button>
+            </div>
+        </td>
     
     `
    document.getElementById('costumer-tbody').appendChild(tr)
