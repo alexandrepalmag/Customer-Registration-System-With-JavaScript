@@ -36,3 +36,9 @@ input[type='date']:after {
     border: solid rgba(201, 206, 211, 0.48) 0.048rem;
     border-radius: 1rem;
 }
+.table-hidden {
+    display: none;
+}
+.form-off {
+    display: none;
+}
