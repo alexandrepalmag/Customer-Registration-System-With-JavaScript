@@ -9,7 +9,7 @@ body {
     box-sizing: border-box;
 }
 nav#navperson {
-    padding: 1rem;
+    padding: 0.5rem;
 }
 .container-person {
     padding: 1.88rem;
