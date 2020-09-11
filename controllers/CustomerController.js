@@ -55,7 +55,7 @@ class CustomerController {
     
         tr.innerHTML = `
         
-            <td>Register Date</td>
+            <td>${Utils.dateFormat(dataCustomer.register)}</td>
             <td>${dataCustomer.name}</td>
             <td>${dataCustomer.birth}</td>
             <td>${dataCustomer.gender}</td>

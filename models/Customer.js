@@ -8,7 +8,12 @@ class Customer{
         this.email = email
         this.phone = phone
         this.country = country
+        this._register = new Date()
 
+    }
+
+    get register() {
+        return this._register
     }
 
 }
