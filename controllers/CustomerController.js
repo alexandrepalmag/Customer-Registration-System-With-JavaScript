@@ -5,6 +5,7 @@ class CustomerController {
         this.formEl = document.getElementById(formId)
         this.tableEl = document.getElementById(tableId)
         this.onSubmit()
+        this.addLineTable()
 
     }
 
@@ -14,7 +15,7 @@ class CustomerController {
         this.formEl.addEventListener('submit', (e) => {
 
             e.preventDefault()
-            
+
             this.getValues()
 
         })
@@ -23,12 +24,12 @@ class CustomerController {
 
     /* =========================== getValues() ==> get values of form's fields ===========================*/
     getValues() {
-        
+
         let customer = {}
         let fields = [...this.formEl.elements]
 
         fields.forEach((field, index) => {
-            
+
             customer[field.name] = field.value
 
         })
@@ -44,24 +45,44 @@ class CustomerController {
 
         this.createCrud(objectCustomer)
 
-        this.addLineTable(objectCustomer)
 
     }//close getValues method
 
     /* =========================== getValues() ==> get values of form's fields ===========================*/
-    addLineTable(dataCustomer) {
-    
+
+    loadFromJSON(json) {
+
+        for (let name in json) {
+            switch (name) {
+                case '_register':
+                    this[name] = new Date(json[name])
+                    break
+                default: this[name] = json[name]
+            }
+
+        }
+
+    }
+
+    addLineTable() {
+        let datas = new CrudCustomer
+        let dataCustomer = datas.getCustomers()
+
+        console.log(dataCustomer)
+
+        dataCustomer.forEach(element => {
+            
         let tr = document.createElement("tr")
-    
+
         tr.innerHTML = `
         
-            <td>${Utils.dateFormat(dataCustomer.register)}</td>
-            <td>${dataCustomer.name}</td>
-            <td>${dataCustomer.birth}</td>
-            <td>${dataCustomer.gender}</td>
-            <td>${dataCustomer.email}</td>
-            <td>${dataCustomer.phone}</td>
-            <td>${dataCustomer.country}</td>
+            <td>/* ${new Date(dataCustomer.register)} */</td>
+            <td>${element.name}</td>
+            <td>${element.birth}</td>
+            <td>${element.gender}</td>
+            <td>${element.email}</td>
+            <td>${element.phone}</td>
+            <td>${element.country}</td>
             <td>
                 <div style="display: inline;">
                     <button class="btn btn-info">
@@ -74,11 +95,19 @@ class CustomerController {
             </td>
         
         `
-       this.tableEl.appendChild(tr)
+        this.tableEl.appendChild(tr)
+        })          
+        
+
     }//close addLineTable method
 
     createCrud(allDatasCostumer) {
+
         let crud = new CrudCustomer(allDatasCostumer)
+
+        crud.addItem()
     }
 
 }
+/* https://medium.com/@lameckanao/armazenando-e-manipulando-dados-no-localstorage-7bcc901ba12b */
+/* https://embed.plnkr.co/plunk/R0utj9 */

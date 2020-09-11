@@ -1,1 +1,1 @@
-let customerController = new CustomerController("form-customer", "customer-table")
+let customerController = new CustomerController("form-customer", "customer-tbody")

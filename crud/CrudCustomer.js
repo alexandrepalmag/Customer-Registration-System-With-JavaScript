@@ -3,7 +3,6 @@ class CrudCustomer {
     constructor(dataCustomer) {
 
         this.dataCustomer = dataCustomer
-        this.addItem()
         this.getCustomers()
 
     }
@@ -32,17 +31,9 @@ class CrudCustomer {
 
         let customers = this.getCustomersStorage()
 
-        customers.forEach(dataCustomer => {
-
-            let customer = new Customer()
-
-            addLineTable()
-            console.log(customer)
-            
-        });
+        return customers
 
     }
-
 
 
 }
