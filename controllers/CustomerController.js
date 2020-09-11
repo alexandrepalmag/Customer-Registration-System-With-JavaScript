@@ -42,14 +42,14 @@ class CustomerController {
             customer.country
         )
 
-            this.addLineTable(objectCustomer)
+        this.createCrud(objectCustomer)
+
+        this.addLineTable(objectCustomer)
 
     }//close getValues method
 
     /* =========================== getValues() ==> get values of form's fields ===========================*/
     addLineTable(dataCustomer) {
-
-        console.log(dataCustomer)
     
         let tr = document.createElement("tr")
     
@@ -76,5 +76,9 @@ class CustomerController {
         `
        this.tableEl.appendChild(tr)
     }//close addLineTable method
+
+    createCrud(allDatasCostumer) {
+        let crud = new CrudCustomer(allDatasCostumer)
+    }
 
 }

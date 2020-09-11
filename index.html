@@ -94,10 +94,9 @@
                             <input type="email" class="form-control" name="email" placeholder="E-mail">
                         </div>
                     </div>
-                    <div class="form-row input-group-lg" style="padding: 0.5rem;">
+                    <div class="form-row input-group-lg" style="padding: 0.5rem">
                         <div class="col input-group-lg">
-                            <input type="tel" class="form-control" name="phone" placeholder="Phone Number"
-                                onkeypress="onlynumber()">
+                            <input type="tel" class="form-control" name="phone" placeholder="Phone Number" onkeypress="Utils.onlynumber()">
                         </div>
                         <div class="col input-group-lg">
                             <select class="form-control" id="id_label_single" name="country">
@@ -372,9 +371,10 @@
     </div>
 </body>
 <script src="static/Utils.js"></script>
-<script src="models/Customer.js"></script>
-<script src="controllers/CustomerController.js"></script>
 <script src="script/script.js"></script>
+<script src="models/Customer.js"></script>
+<script src="crud/CrudCustomer.js"></script>
+<script src="controllers/CustomerController.js"></script>
 <script src="script/main.js"></script>
 <script src="lib/fontawesome/js/all.js"></script>
 <script src="lib/jquery/jquery.min.js"></script>
