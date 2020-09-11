@@ -1,37 +1,45 @@
-let costumer = {}
+let customer = {}
 
-document.getElementById('form-costumer').addEventListener('submit', (e) => {
+document.getElementById('form-customer').addEventListener('submit', (e) => {
 
     e.preventDefault()
 
-    let fields = document.querySelectorAll('#form-costumer [name]')
+    let fields = document.querySelectorAll('#form-customer [name]')
 
     fields.forEach((field, index) => {
 
-        costumer[field.name] = field.value
+        customer[field.name] = field.value
 
     })
 
-    addLineTable(costumer)
-    console.log(costumer)
+    let objectCustomer = new Customer (
+        customer.name,
+        customer.birth,
+        customer.gender,
+        customer.email,
+        customer.phone,
+        customer.country
+    )
+
+    addLineTable(objectCustomer)
 
 })
 
-function addLineTable(dataCostumer) {
+function addLineTable(dataCustomer) {
 
-    console.log(dataCostumer)
+    console.log(dataCustomer)
 
     let tr = document.createElement("tr")
 
     tr.innerHTML = `
     
         <td>Register Date</td>
-        <td>${dataCostumer.name}</td>
-        <td>${dataCostumer.birth}</td>
-        <td>${dataCostumer.gender}</td>
-        <td>${dataCostumer.email}</td>
-        <td>${dataCostumer.phone}</td>
-        <td>${dataCostumer.country}</td>
+        <td>${dataCustomer.name}</td>
+        <td>${dataCustomer.birth}</td>
+        <td>${dataCustomer.gender}</td>
+        <td>${dataCustomer.email}</td>
+        <td>${dataCustomer.phone}</td>
+        <td>${dataCustomer.country}</td>
         <td>
             <div style="display: inline;">
                 <button class="btn btn-info">
@@ -44,6 +52,6 @@ function addLineTable(dataCostumer) {
         </td>
     
     `
-   document.getElementById('costumer-tbody').appendChild(tr)
+   document.getElementById('customer-tbody').appendChild(tr)
 }
 
