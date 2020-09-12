@@ -11,6 +11,7 @@ class Utils {
     }
 
     static onlynumber(evt) {
+
         let theEvent = evt || window.event;
         let key = theEvent.keyCode || theEvent.which;
         key = String.fromCharCode(key);
@@ -20,6 +21,7 @@ class Utils {
             theEvent.returnValue = false;
             if (theEvent.preventDefault) theEvent.preventDefault();
         }
+        
     }
 
 }

@@ -6,7 +6,7 @@ class CustomerController {
         this.tableEl = document.getElementById(tableId)
         this.getClickShowHide()
         this.onSubmit()
-        this.addLineTable()
+        this.selectAll()
 
     }
 
@@ -38,6 +38,43 @@ class CustomerController {
     }//close onSubmit method
 
     /* =========================== getValues() ==> get values of form's fields ===========================*/
+
+    getCustomersStorage() {
+
+        let customers = []
+
+        if (localStorage.getItem("customers")) {
+            customers = JSON.parse(localStorage.getItem("customers"))
+        }
+        return customers
+    }
+
+    addItem(data) {
+
+        let customers = this.getCustomersStorage()
+
+        customers.push(data)
+
+        localStorage.setItem("customers", JSON.stringify(customers))
+
+    }
+
+    selectAll() {
+
+        let customers = this.getCustomersStorage()
+
+        customers.forEach(dataCustomer => {
+
+            let customer = new Customer()
+
+            customer.loadJSON(dataCustomer)
+
+            this.addLineTable(customer)
+
+        })
+
+    }
+
     getValues() {
 
         let customer = {}
@@ -58,37 +95,29 @@ class CustomerController {
             customer.country
         )
 
-        let crud = new CrudCustomer(objectCustomer)
+        this.addItem(objectCustomer)
 
-        crud.addItem()
+        this.addLineTable(objectCustomer)
 
         Utils.onOff()
-
-        this.formEl.reset()
 
     }//close getValues method
 
     /* =========================== getValues() ==> get values of form's fields ===========================*/
 
-    addLineTable() {
-        let datas = new CrudCustomer
-        let dataCustomer = datas.getCustomers()
+    addLineTable(dataCustomer) {
 
-        console.log(dataCustomer)
+        let tr = document.createElement("tr")
 
-        dataCustomer.forEach(element => {
+        tr.innerHTML = `
 
-            let tr = document.createElement("tr")
-
-            tr.innerHTML = `
-        
-            <td>/* ${new Date(dataCustomer.register)} */</td>
-            <td>${element.name}</td>
-            <td>${element.birth}</td>
-            <td>${element.gender}</td>
-            <td>${element.email}</td>
-            <td>${element.phone}</td>
-            <td>${element.country}</td>
+            <td>empty</td>
+            <td>${dataCustomer.name}</td>
+            <td>${dataCustomer.birth}</td>
+            <td>${dataCustomer.gender}</td>
+            <td>${dataCustomer.email}</td>
+            <td>${dataCustomer.phone}</td>
+            <td>${dataCustomer.country}</td>
             <td>
                 <div style="display: inline;">
                     <button class="btn btn-info">
@@ -101,12 +130,8 @@ class CustomerController {
             </td>
         
         `
-            this.tableEl.appendChild(tr)
-
-        })
+        this.tableEl.appendChild(tr)
 
     }//close addLineTable method
 
 }
-/* https://medium.com/@lameckanao/armazenando-e-manipulando-dados-no-localstorage-7bcc901ba12b */
-/* https://embed.plnkr.co/plunk/R0utj9 */
