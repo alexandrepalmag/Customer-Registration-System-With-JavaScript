@@ -4,9 +4,24 @@ class CustomerController {
 
         this.formEl = document.getElementById(formId)
         this.tableEl = document.getElementById(tableId)
+        this.getClickShowHide()
         this.onSubmit()
         this.addLineTable()
 
+    }
+
+    getClickShowHide() {
+        document.getElementById('btn-new').addEventListener('click', () => {
+            Utils.onOff()
+        })
+
+        document.getElementById('btn-cancel').addEventListener('click', () => {
+
+            this.formEl.reset()
+
+            Utils.onOff()
+
+        })
     }
 
     /* =========================== onSubmit() ==> treatment of submit event ===========================*/
@@ -43,26 +58,17 @@ class CustomerController {
             customer.country
         )
 
-        this.createCrud(objectCustomer)
+        let crud = new CrudCustomer(objectCustomer)
 
+        crud.addItem()
+
+        Utils.onOff()
+
+        this.formEl.reset()
 
     }//close getValues method
 
     /* =========================== getValues() ==> get values of form's fields ===========================*/
-
-    loadFromJSON(json) {
-
-        for (let name in json) {
-            switch (name) {
-                case '_register':
-                    this[name] = new Date(json[name])
-                    break
-                default: this[name] = json[name]
-            }
-
-        }
-
-    }
 
     addLineTable() {
         let datas = new CrudCustomer
@@ -71,10 +77,10 @@ class CustomerController {
         console.log(dataCustomer)
 
         dataCustomer.forEach(element => {
-            
-        let tr = document.createElement("tr")
 
-        tr.innerHTML = `
+            let tr = document.createElement("tr")
+
+            tr.innerHTML = `
         
             <td>/* ${new Date(dataCustomer.register)} */</td>
             <td>${element.name}</td>
@@ -95,18 +101,11 @@ class CustomerController {
             </td>
         
         `
-        this.tableEl.appendChild(tr)
-        })          
-        
+            this.tableEl.appendChild(tr)
+
+        })
 
     }//close addLineTable method
-
-    createCrud(allDatasCostumer) {
-
-        let crud = new CrudCustomer(allDatasCostumer)
-
-        crud.addItem()
-    }
 
 }
 /* https://medium.com/@lameckanao/armazenando-e-manipulando-dados-no-localstorage-7bcc901ba12b */
