@@ -33,11 +33,15 @@ class CustomerController {
 
             this.getValues()
 
+           /*  console.log(values)
+
+            values.save() */
+
         })
 
     }//close onSubmit method
 
-    /* =========================== getValues() ==> get values of form's fields ===========================*/
+    /* =========================== getCustomersStorage() ==> get localStorage items; ================*/
 
     getCustomersStorage() {
 
@@ -49,7 +53,7 @@ class CustomerController {
         return customers
     }
 
-    addItem(data) {
+    /* addItem(data) {
 
         let customers = this.getCustomersStorage()
 
@@ -57,7 +61,8 @@ class CustomerController {
 
         localStorage.setItem("customers", JSON.stringify(customers))
 
-    }
+    } */
+
 
     selectAll() {
 
@@ -74,6 +79,8 @@ class CustomerController {
         })
 
     }
+
+    /* =========================== getValues() ==> get values of form's fields ===========================*/
 
     getValues() {
 
@@ -95,11 +102,16 @@ class CustomerController {
             customer.country
         )
 
-        this.addItem(objectCustomer)
+        /* this.addItem(objectCustomer)
+ */
+
+        Utils.onOff()
+
+        objectCustomer.save()
 
         this.addLineTable(objectCustomer)
 
-        Utils.onOff()
+        this.formEl.reset()
 
     }//close getValues method
 
@@ -111,7 +123,7 @@ class CustomerController {
 
         tr.innerHTML = `
 
-            <td>empty</td>
+            <td>${dataCustomer.id}</td>
             <td>${dataCustomer.name}</td>
             <td>${dataCustomer.birth}</td>
             <td>${dataCustomer.gender}</td>

@@ -2,6 +2,7 @@ class Customer {
 
     constructor(name, birth, gender, email, phone, country) {
 
+        this._id
         this._name = name
         this._birth = birth
         this._gender = gender
@@ -11,7 +12,11 @@ class Customer {
         this._register = new Date()
 
     }
-    
+
+    get id() {
+        return this._id
+    }
+
     get name() {
         return this._name
     }
@@ -19,7 +24,7 @@ class Customer {
     get birth() {
         return this._birth
     }
-    
+
     get gender() {
         return this._gender
     }
@@ -40,7 +45,7 @@ class Customer {
         return this._register
     }
 
-     loadJSON(json) {
+    loadJSON(json) {
 
         for (let name in json) {
             switch (name) {
@@ -53,5 +58,78 @@ class Customer {
         }
 
     }
- 
+
+    static getCustomersStorage() {
+
+        let customers = []
+
+        if (localStorage.getItem("customers")) {
+            customers = JSON.parse(localStorage.getItem("customers"))
+        }
+        return customers
+    }
+
+//Creation new id
+    getNewId() {
+
+        let ids = Customer.getCustomersStorage()
+
+        let idsarr = []
+
+                for (let i in ids) {
+    
+                    idsarr.push(ids[i]._id)
+                    
+                }
+
+        if (idsarr.length < 1) {
+
+            console.log('if2')
+
+            window.id=1
+
+        } else {
+
+            let max = idsarr.reduce(function(a, b) {
+                return Math.max(a, b);
+              });
+
+            window.id = max+1
+
+        }
+
+        return window.id
+
+    }
+
+    save() {
+        let customers = Customer.getCustomersStorage()
+
+        if (this.id > 0) {
+
+            customers.map(c => {
+
+                if (c._id == this.id)
+
+                    Object.assign(c, this)
+
+                return c
+
+            })
+            console.log('if1')
+
+        } else {
+
+            this._id = this.getNewId()
+
+            customers.push(this)
+
+            console.log('else', this._id)
+
+        }
+
+        localStorage.setItem("customers", JSON.stringify(customers))
+
+    }
+
 }
