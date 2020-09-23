@@ -132,4 +132,12 @@ class Customer {
 
     }
 
+    remove() {
+
+        let customers = Customer.getCustomersStorage()
+
+        console.log()
+
+    }
+
 }

@@ -6,6 +6,7 @@ class CustomerController {
         this.tableEl = document.getElementById(tableId)
         this.getClickShowHide()
         this.onSubmit()
+        this.addEventsTr()
         this.selectAll()
 
     }
@@ -33,9 +34,9 @@ class CustomerController {
 
             this.getValues()
 
-           /*  console.log(values)
-
-            values.save() */
+            /*  console.log(values)
+ 
+             values.save() */
 
         })
 
@@ -131,12 +132,9 @@ class CustomerController {
             <td>${dataCustomer.phone}</td>
             <td>${dataCustomer.country}</td>
             <td>
-                <div style="display: inline;">
-                    <button class="btn btn-info">
-                        <i class="fas fa-edit"></i>
-                    </button>
-                    <button class="btn btn-danger">
-                        <i class="fas fa-trash-alt"></i>
+                <div class="getid" id="${dataCustomer.id}">
+                    <button type="button" class="btn btn-danger" id="btn-delete">
+                        Delete
                     </button>
                 </div>
             </td>
@@ -144,6 +142,26 @@ class CustomerController {
         `
         this.tableEl.appendChild(tr)
 
+        return tr
+
     }//close addLineTable method
+
+    addEventsTr() {
+
+        document.querySelector("#customer-tbody").onclick = (event) => {
+            let target = event.target
+            
+            let idvalue = target.closest('.getid').id
+           
+            /* let parentThis = document.getElementById(`${target}`).parentNode.parentNode.parentElement
+            
+             let idb = parentThis.id
+
+            console.log(document.getElementById(`${target}`)) */
+        
+        }
+
+    }
+
 
 }
