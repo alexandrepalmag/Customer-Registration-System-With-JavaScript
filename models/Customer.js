@@ -84,8 +84,6 @@ class Customer {
 
         if (idsarr.length < 1) {
 
-            console.log('if2')
-
             window.id=1
 
         } else {
@@ -116,7 +114,6 @@ class Customer {
                 return c
 
             })
-            console.log('if1')
 
         } else {
 
@@ -132,7 +129,7 @@ class Customer {
 
     }
 
-    remove() {
+    onRemove() {
 
         let customers = Customer.getCustomersStorage()
 

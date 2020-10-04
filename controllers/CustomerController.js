@@ -121,6 +121,7 @@ class CustomerController {
     addLineTable(dataCustomer) {
 
         let tr = document.createElement("tr")
+        tr.classList.add('classtr')
 
         tr.innerHTML = `
 
@@ -140,6 +141,7 @@ class CustomerController {
             </td>
         
         `
+
         this.tableEl.appendChild(tr)
 
         return tr
@@ -149,16 +151,13 @@ class CustomerController {
     addEventsTr() {
 
         document.querySelector("#customer-tbody").onclick = (event) => {
-            let target = event.target
-            
-            let idvalue = target.closest('.getid').id
-           
-            /* let parentThis = document.getElementById(`${target}`).parentNode.parentNode.parentElement
-            
-             let idb = parentThis.id
 
-            console.log(document.getElementById(`${target}`)) */
-        
+            let idValue = event.target.closest('.getid').id
+            
+            let father = document.getElementById(`${idValue}`).parentElement.parentElement.remove()
+
+           let customer = new Customer()
+           
         }
 
     }
