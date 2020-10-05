@@ -12,17 +12,29 @@ class CustomerController {
     }
 
     getClickShowHide() {
-        document.getElementById('btn-new').addEventListener('click', () => {
+
+        document.querySelector('body').onclick = (event) => {
+            let idValue = event.target.classList[2]
+
+            if (idValue == 'btnNew') {
+                Utils.onOff()
+            } else if (idValue == 'btnCancel') {
+                this.formEl.reset()
+
+                Utils.onOff()
+            }
+        }
+
+        /* document.getElementById('btn-new').addEventListener('click', () => {
             Utils.onOff()
         })
 
         document.getElementById('btn-cancel').addEventListener('click', () => {
-
             this.formEl.reset()
 
             Utils.onOff()
 
-        })
+        }) */
     }
 
     /* =========================== onSubmit() ==> treatment of submit event ===========================*/
@@ -157,9 +169,9 @@ class CustomerController {
             let customer = new Customer()
 
             customer.onRemove(idValue)
-            
+
             let father = document.getElementById(`${idValue}`).parentElement.parentElement.remove()
-           
+
         }
 
     }
