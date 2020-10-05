@@ -153,14 +153,15 @@ class CustomerController {
         document.querySelector("#customer-tbody").onclick = (event) => {
 
             let idValue = event.target.closest('.getid').id
+
+            let customer = new Customer()
+
+            customer.onRemove(idValue)
             
             let father = document.getElementById(`${idValue}`).parentElement.parentElement.remove()
-
-           let customer = new Customer()
            
         }
 
     }
-
 
 }

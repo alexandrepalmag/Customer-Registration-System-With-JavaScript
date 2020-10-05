@@ -129,12 +129,16 @@ class Customer {
 
     }
 
-    onRemove() {
+    onRemove(dataId) {
 
         let customers = Customer.getCustomersStorage()
 
-        console.log()
-
+        customers.forEach((customer, index) => {
+            if(customer._id == dataId) {
+               customers.splice(index, 1)
+            }
+        });
+        localStorage.setItem("customers", JSON.stringify(customers))
     }
 
 }
